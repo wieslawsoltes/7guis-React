@@ -13,11 +13,11 @@ not project references to the WebScene source checkout.
 ## Starting point
 
 - Upstream application: `wieslawsoltes/7guis-React`, commit `9110e0f` on `master`.
-- Runtime reference: `wieslawsoltes/WebScene`, commit `5c838df`, tag `v1.0.17`.
+- Runtime reference: `wieslawsoltes/WebScene`, commit `9e43d93`, tag `v1.0.18`.
 - Work branch: `WebScene` in the `7guis-React` checkout.
 - Host: Uno Platform Skia desktop (`net10.0-desktop`) on Apple silicon macOS.
-- Released packages: `WebScene.Backend.Uno` 1.0.17 and
-  `WebScene.NativeEngine.Runtime.osx-arm64` 1.0.17.
+- Released packages: `WebScene.Backend.Uno` 1.0.18 and
+  `WebScene.NativeEngine.Runtime.osx-arm64` 1.0.18.
 
 ## Architecture
 
@@ -68,10 +68,12 @@ covered by WebScene's compatibility suite.
 
 ### 4. Uno support is a native backend, not an Uno component-host SDK control
 
-WebScene 1.0.17 publishes `WebScene.Sdk.Avalonia`, but there is no corresponding
-`WebScene.Sdk.Uno` package. The supported Uno integration surface is
-`WebScene.Backend.Uno`, whose `UnoNativeWebSceneView` directly loads a URL into the
-native engine and presents immutable scene diffs through Uno Skia.
+At the original 1.0.17 porting point, WebScene published `WebScene.Sdk.Avalonia` but
+no corresponding `WebScene.Sdk.Uno` package. Version 1.0.18 discontinues that managed
+component-host SDK and standardizes on the native runtime. Its available Uno
+integration surface remains `WebScene.Backend.Uno`, whose `UnoNativeWebSceneView`
+directly loads a URL into the native engine and presents immutable scene diffs through
+Uno Skia.
 
 The app therefore uses the portable offline bundle as the component artifact and the
 Uno backend directly. This matches WebScene's own `NativeRuntimeShowcase.Uno` sample.
@@ -80,7 +82,7 @@ Uno backend directly. This matches WebScene's own `NativeRuntimeShowcase.Uno` sa
 
 `WebScene.Backend.Uno` does not silently choose a native engine. The app sets
 `RuntimeIdentifier=osx-arm64` and references
-`WebScene.NativeEngine.Runtime.osx-arm64` at the same 1.0.17 version. Its transitive
+`WebScene.NativeEngine.Runtime.osx-arm64` at the same 1.0.18 version. Its transitive
 MSBuild targets copy the engine library, ICU data, V8 snapshot, metadata, and manifest
 to output and reject RID mismatches.
 
@@ -106,21 +108,32 @@ GHSA-xrw6-gwf8-vvr9. WebScene's current central package graph already pins 0.21.
 the consumer app now explicitly references 0.21.3 as well. This keeps the published
 WebScene package integration while avoiding the vulnerable transitive selection.
 
-### 9. Some browser-default layout and form presentation needed explicit equivalents
+### 9. WebScene 1.0.18 closes two of the three initial rendering gaps
 
-The first native screenshots exposed useful compatibility differences rather than
-startup failures:
+The first 1.0.17 native screenshots exposed useful compatibility differences rather
+than startup failures:
 
 - the HTML `select` painted its option text inline instead of as one collapsed native
   picker;
 - CSS Grid placement did not match browser layout in the Temperature and CRUD panels;
 - mixed inline timer text did not retain the intended visual order.
 
-The port switched these small surfaces to WebScene-friendly equivalents: a segmented
-trip-type picker and explicit flex layouts. Circle Drawer also starts with three sample
-circles so screenshot verification proves the SVG scene path without requiring a
-manual click before capture. These are presentation adaptations; the benchmark state
-and constraint behavior remains in React.
+WebScene 1.0.18 includes a dedicated 7GUIs compatibility change. The port now uses a
+canonical collapsed HTML `select` for Flight Booker and CSS Grid for Temperature and
+both CRUD implementations. Direct runtime geometry assertions confirm that option
+boxes stay collapsed, the selected label remains visible, the temperature columns are
+ordered and equal, and the CRUD columns share the available width.
+
+The mixed inline timer gap is not completely fixed for this React path. With the
+ordinary inline rule restored, the 1.0.18 package reported the suffix rectangle before
+the elapsed `<strong>` and gave the `<strong>` a zero-sized rectangle after React's
+incremental DOM creation. The timer therefore retains its explicit flex row. Its smoke
+now checks elapsed-time progress and the final left-to-right geometry, so the remaining
+workaround is covered rather than assumed.
+
+Circle Drawer also starts with three sample circles so screenshot verification proves
+the SVG scene path without requiring a manual click before capture. This is a sample
+presentation choice; the benchmark state and constraint behavior remains in React.
 
 ### 10. SVG elements dispatch events but do not expose the `click()` convenience method
 
@@ -130,9 +143,17 @@ through `dispatchEvent` exercises the same React handler and works. The applicat
 itself receives ordinary pointer input through the Uno backend; this difference only
 affected the automated DOM smoke.
 
+### 11. WebScene 1.0.18 upgrade verification
+
+Both WebScene package references resolve to 1.0.18. The Release build completes with
+zero warnings and zero errors, and all eight sample processes pass their in-runtime
+interaction smoke before reporting ready. In addition to the original state checks,
+the 1.0.18 run verifies the restored `select` and Grid geometry and the retained timer
+workaround's final inline order.
+
 ## Verification matrix
 
-| Exercise | Build | Native startup | Interaction | Screenshot |
+| Exercise | Build | Native startup | Interaction on 1.0.18 | Prior 1.0.17 screenshot |
 | --- | --- | --- | --- | --- |
 | Counter | Pass | Pass | Pass: Count commits `0 → 1` | `/Users/wieslawsoltes/Desktop/screenshot-2026-08-02_21-53-02.png` |
 | Temperature Converter | Pass | Pass | Pass: `100 °C → 212 °F` | `/Users/wieslawsoltes/Desktop/screenshot-2026-08-02_21-51-05.png` |

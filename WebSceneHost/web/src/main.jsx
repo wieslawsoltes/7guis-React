@@ -81,10 +81,10 @@ function FlightBooker() {
   return (
     <SampleCard number="03" title="Flight Booker" description="Input validation, dependent controls, and explicit booking feedback.">
       <div className="form-stack narrow">
-        <label><span>Trip type</span><div className="trip-picker">
-          <button className={flightType === "one-way" ? "trip-choice active" : "trip-choice"} onClick={() => setFlightType("one-way")}>One-way flight</button>
-          <button className={flightType === "return" ? "trip-choice active" : "trip-choice"} onClick={() => setFlightType("return")}>Return flight</button>
-        </div></label>
+        <label><span>Trip type</span><select value={flightType} onChange={event => setFlightType(event.target.value)}>
+          <option value="one-way">One-way flight</option>
+          <option value="return">Return flight</option>
+        </select></label>
         <label><span>Depart</span><input className={start ? "" : "invalid"} value={fromDate} onChange={event => setFromDate(event.target.value)} placeholder="dd.mm.yyyy" /></label>
         <label><span>Return</span><input className={flightType === "return" && !finish ? "invalid" : ""} value={toDate} onChange={event => setToDate(event.target.value)} disabled={flightType === "one-way"} placeholder="dd.mm.yyyy" /></label>
         <button className="primary" onClick={book} disabled={!valid}>Book flight</button>

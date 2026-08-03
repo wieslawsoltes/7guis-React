@@ -25,7 +25,7 @@ interaction smoke before reporting readiness:
 dotnet run --project WebSceneHost -c Release -f net10.0-desktop -- --sample cells --verify
 ```
 
-The host consumes these published NuGet packages at version `1.0.17`:
+The host consumes these published NuGet packages at version `1.0.18`:
 
 - `WebScene.Backend.Uno`
 - `WebScene.NativeEngine.Runtime.osx-arm64`
@@ -34,3 +34,9 @@ The runtime package copies the native engine library, ICU data, V8 bootstrap sna
 and ABI manifest into the application output. `MainPage` resolves the library beside
 the executable and loads the checked-in offline React bundle with
 `UnoNativeWebSceneView`.
+
+Version 1.0.18 supplies the collapsed HTML `select` and CSS Grid behavior used by the
+Flight Booker, Temperature Converter, and CRUD samples. The timer keeps an explicit
+flex row because React's incrementally-created mixed inline descendants can still be
+projected out of order; the `--verify` smoke checks the final visual order as well as
+the timer update.

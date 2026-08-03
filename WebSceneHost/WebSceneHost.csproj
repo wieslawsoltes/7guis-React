@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WebScene.Backend.Uno" Version="1.0.17" />
-    <PackageReference Include="WebScene.NativeEngine.Runtime.osx-arm64" Version="1.0.17" />
+    <PackageReference Include="WebScene.Backend.Uno" Version="1.0.18" />
+    <PackageReference Include="WebScene.NativeEngine.Runtime.osx-arm64" Version="1.0.18" />
     <PackageReference Include="Tmds.DBus.Protocol" Version="0.21.3" />
   </ItemGroup>
 

@@ -33,7 +33,7 @@ _( ReactJS, Redux, ES6+, Mocha, expect, webpack )_
 ## WebScene native Uno host
 
 The [`WebSceneHost`](WebSceneHost) app runs all seven exercises as an offline React
-19 bundle on WebScene 1.0.17's native V8/DOM/CSS scene runtime in an Uno Platform Skia
+19 bundle on WebScene 1.0.18's native V8/DOM/CSS scene runtime in an Uno Platform Skia
 desktop window. It does not use a browser or WebView. This branch also supplies the
 Cells implementation that is listed above but absent from the original repository.
 
