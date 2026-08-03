@@ -1,0 +1,18 @@
+{
+  "name": "7guis-react-webscene-bundle",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-redux": "9.3.0",
+    "redux": "5.0.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1"
+  }
+}

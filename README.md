@@ -29,3 +29,14 @@ _( ReactJS, Redux, ES6+, Mocha, expect, webpack )_
 
 ### 7. Cells
 > ![](https://raw.githubusercontent.com/wiki/eugenkiss/7guis/images/cells.png)
+
+## WebScene native Uno host
+
+The [`WebSceneHost`](WebSceneHost) app runs all seven exercises as an offline React
+19 bundle on WebScene 1.0.18's native V8/DOM/CSS scene runtime in an Uno Platform Skia
+desktop window. It does not use a browser or WebView. This branch also supplies the
+Cells implementation that is listed above but absent from the original repository.
+
+See [`WebSceneHost/README.md`](WebSceneHost/README.md) for build, launch, and per-sample
+interaction-smoke commands. The complete analysis, issues, adaptations, runtime
+evidence, and screenshot inventory are in [`WEBSCENE_PORTING_LOG.md`](WEBSCENE_PORTING_LOG.md).

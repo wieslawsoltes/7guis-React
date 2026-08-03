@@ -1,0 +1,39 @@
+<Project Sdk="Uno.Sdk/6.5.31">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-desktop</TargetFrameworks>
+    <RuntimeIdentifier>osx-arm64</RuntimeIdentifier>
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+    <UnoFeatures>SkiaRenderer;</UnoFeatures>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIdGuid>069F99D8-9872-4CE8-B60C-734DF50DA3EB</ApplicationIdGuid>
+    <ApplicationTitle>7GUIs React on WebScene</ApplicationTitle>
+    <ApplicationId>com.wieslawsoltes.7guis.webscene</ApplicationId>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WebScene.Backend.Uno" Version="1.0.18" />
+    <PackageReference Include="WebScene.NativeEngine.Runtime.osx-arm64" Version="1.0.18" />
+    <PackageReference Include="Tmds.DBus.Protocol" Version="0.21.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="web\dist\index.html"
+             Link="web\index.html"
+             CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="web\dist\main.js"
+             Link="web\main.js"
+             CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="web\dist\main.js.map"
+             Link="web\main.js.map"
+             CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="web\dist\main.css"
+             Link="web\main.css"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

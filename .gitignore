@@ -4,3 +4,6 @@ npm-debug.log
 dist/bundle.js
 .vscode
 jsconfig.json
+WebSceneHost/bin/
+WebSceneHost/obj/
+WebSceneHost/web/node_modules/
