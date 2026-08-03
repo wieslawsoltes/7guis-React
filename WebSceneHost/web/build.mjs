@@ -6,7 +6,8 @@ await build({
   entryPoints: ["src/main.jsx"],
   bundle: true,
   minify: false,
-  sourcemap: false,
+  sourcemap: true,
+  sourcesContent: true,
   target: "es2020",
   format: "iife",
   outfile: "dist/main.js"

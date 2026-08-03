@@ -29,6 +29,9 @@
     <Content Include="web\dist\main.js"
              Link="web\main.js"
              CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="web\dist\main.js.map"
+             Link="web\main.js.map"
+             CopyToOutputDirectory="PreserveNewest" />
     <Content Include="web\dist\main.css"
              Link="web\main.css"
              CopyToOutputDirectory="PreserveNewest" />

@@ -35,6 +35,12 @@ and ABI manifest into the application output. `MainPage` resolves the library be
 the executable and loads the checked-in offline React bundle with
 `UnoNativeWebSceneView`.
 
+The development bundle emits `main.js.map` with embedded `sourcesContent` and
+copies it beside `main.js`. V8 reports the generated script's source-map URL to
+CDP clients, allowing Chrome DevTools and the CDP Inspector to show and bind
+breakpoints in the original `web/src/main.jsx` source without needing a separate
+source checkout on the debugger machine.
+
 Version 1.0.18 supplies the collapsed HTML `select` and CSS Grid behavior used by the
 Flight Booker, Temperature Converter, and CRUD samples. The timer keeps an explicit
 flex row because React's incrementally-created mixed inline descendants can still be
