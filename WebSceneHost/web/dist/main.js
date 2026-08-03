@@ -22115,7 +22115,7 @@
   function Counter() {
     const [count, setCount] = (0, import_react.useState)(0);
     const increment = () => {
-      setCount((value) => value + 1);
+      setCount(count + 1);
     };
     return /* @__PURE__ */ import_react.default.createElement(SampleCard, { number: "01", title: "Counter", description: "The smallest useful test of local React state and native pointer dispatch." }, /* @__PURE__ */ import_react.default.createElement("div", { className: "counter-row" }, /* @__PURE__ */ import_react.default.createElement("output", { className: "count-output", "data-testid": "counter-value" }, count), /* @__PURE__ */ import_react.default.createElement("button", { className: "primary", onClick: increment }, "Count")));
   }
