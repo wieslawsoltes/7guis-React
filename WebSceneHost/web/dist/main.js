@@ -22114,7 +22114,10 @@
   ];
   function Counter() {
     const [count, setCount] = (0, import_react.useState)(0);
-    return /* @__PURE__ */ import_react.default.createElement(SampleCard, { number: "01", title: "Counter", description: "The smallest useful test of local React state and native pointer dispatch." }, /* @__PURE__ */ import_react.default.createElement("div", { className: "counter-row" }, /* @__PURE__ */ import_react.default.createElement("output", { className: "count-output", "data-testid": "counter-value" }, count), /* @__PURE__ */ import_react.default.createElement("button", { className: "primary", onClick: () => setCount((value) => value + 1) }, "Count")));
+    const increment = () => {
+      setCount((value) => value + 1);
+    };
+    return /* @__PURE__ */ import_react.default.createElement(SampleCard, { number: "01", title: "Counter", description: "The smallest useful test of local React state and native pointer dispatch." }, /* @__PURE__ */ import_react.default.createElement("div", { className: "counter-row" }, /* @__PURE__ */ import_react.default.createElement("output", { className: "count-output", "data-testid": "counter-value" }, count), /* @__PURE__ */ import_react.default.createElement("button", { className: "primary", onClick: increment }, "Count")));
   }
   function TemperatureConverter() {
     const [celsius, setCelsius] = (0, import_react.useState)("");

@@ -16,11 +16,14 @@ const samples = [
 
 function Counter() {
   const [count, setCount] = useState(0);
+  const increment = () => {
+    setCount(value => value + 1);
+  };
   return (
     <SampleCard number="01" title="Counter" description="The smallest useful test of local React state and native pointer dispatch.">
       <div className="counter-row">
         <output className="count-output" data-testid="counter-value">{count}</output>
-        <button className="primary" onClick={() => setCount(value => value + 1)}>Count</button>
+        <button className="primary" onClick={increment}>Count</button>
       </div>
     </SampleCard>
   );
